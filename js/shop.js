@@ -249,10 +249,35 @@ function addToCart(id) {
     document.getElementById("count_product").innerHTML = totalProductos;
 }
 
-// Exercise 8
+// Exercise 9
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    let encontrado = false;
+    let elemento = -1;
+    let i = 0;
+    let j = 0;
+    let quantity = cart.length;
+
+    while (encontrado == false & j < quantity) {
+        //1. busco  en el array carrito el elemento que quiro eliminar
+        if (cart[j].id === id) {
+            encontrado = true;
+            elemento = j; // indice del producto que voy a eliminar 
+            if (cart[j].quantity > 1) {
+                cart[elemento].quantity -= 1; // disminuyo su cantidad en 1. 
+                cart[elemento].total -= cart[elemento].price;
+                totalProductos -= 1;//contador de productos totales del carro
+            }
+            if (cart[j].quantity === 0) {
+                cart.splice(j,1);
+            }
+            j++;// mientras no encuentre el id solicitado va incrementando el contador
+            //que le permitirá recorrer el array de objetos (products)
+        }
+
+        printCart();
+    }
 }
 
 function open_modal() {
