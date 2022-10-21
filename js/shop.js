@@ -90,20 +90,29 @@ function buy(id) {
         //que le permitirá recorrer el array de objetos (products)
     }
     // añadir el producto al array cartList una vez he encontrado el id. 
-    document.getElementById("count_product").innerHTML = totalProductos; 
-    
-    }
-   
+    document.getElementById("count_product").innerHTML = totalProductos;
+
+}
+
 // Exercise 2
 function cleanCart() {
     cartList.splice(0);// vacia el carrito 
     totalProductos = 0;// pone el contador de productos a cero
-    document.getElementById("count_product").innerHTML = totalProductos;   
+    document.getElementById("count_product").innerHTML = totalProductos;
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
+    let long = cartList.length;
+    let total = 0;// para calcular subtotal de cada producto
+    let i;
+    let cartListProducto;
+
+    for (i = 0; i <= long; i++) {
+        total += Number(cartList[i].price);// aqui sumo directamente los precios porque en cada posicion del array hay siempre un unico producto
+    }
+    document.getElementById(total_price).innerHTML = total; // escribo en el modal del carrito el total de la compra
 }
 
 // Exercise 4
