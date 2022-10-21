@@ -94,11 +94,11 @@ function buy(id) {
     
     }
    
-
-
 // Exercise 2
 function cleanCart() {
-    
+    cartList.splice(0);// vacia el carrito 
+    totalProductos = 0;// pone el contador de productos a cero
+    document.getElementById("count_product").innerHTML = totalProductos;   
 }
 
 // Exercise 3
