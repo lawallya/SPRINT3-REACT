@@ -151,6 +151,45 @@ function generateCart() {
 // Exercise 5
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
+     /* dos tipos de promociones si hay mas de 3 productos iguales, el preciose modifica a 10 euros, si hay mas de 10 productos de groceri
+    se hace un 33% de descuento.
+    Esta funcion cacula y modifica el subtotal y el subtotal con descuento de cada producto al que se le pueda aplicar promocion.*/
+    let quantity = cart.length;
+    let j;
+    const aIndices = [];
+    let numberGrocery = 0;
+   
+    // DESCUENTO 1:  como he mantenido los id y he ordenado el cart por id, conozco la posicion del aceite de oliva. 
+    //En otro caso tendria primero que buscarlo
+    for (i = 0; i < quantity; i++) {
+        if (cart[i].id == 1) {// el id=1 corresponde al aceite de oliva
+            if (cart[i].quantity >= 3) {
+                //cart[i].subtotal =  cart[i].price * cart[i].quantity;No hace falta, la he calculado en generateCart
+                cart[i].price = 10;
+                cart[i].subtotalWithDiscount = cart[i].price * cart[i].quantity;
+
+                break; // si pongo alguno tiene que ser aqui
+            }
+        }
+    }
+    
+    // DESCUENTO 2
+    if (totalProductos >= 10) {
+        for (j = 0; j < quantity; j++) {
+            if (cart[j].type === "grocery") {// cuento cuantos productos comestibles hay.
+                numberGrocery += cart[j].quantity;
+                aIndices.push(j);// segun voy encontrando productos de grocery voy guardando su indice en un nuevo array.
+                /* el subtotal en principio se calcula solo tal y como he puesto en la clase. Si no tendria que calcularlo aqui */
+                if (numberGrocery >= 10) {
+                     let longGrocery = aIndices.length;
+                    for (i = 0; i < longGrocery; i++) {
+                        cart[aIndices[i]].subtotalWithDiscount = 0.66 * cart[aIndices[i]].total;
+                    }
+                }
+            }
+        }
+    }           
+
 }
 
 // Exercise 6
