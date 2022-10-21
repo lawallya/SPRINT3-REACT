@@ -73,7 +73,24 @@ var total = 0;
 
 // Exercise 1
 function buy(id) {
-    
+    let idBuscado = Number(id);
+    let encontrado = false;
+    let elemento = -1;
+    let i = 0;
+    let long = products.length;
+
+    while (encontrado == false & i < long) {
+        if (idBuscado == products[i].id) {
+            encontrado = true;
+            elemento = i;
+            totalProductos += 1;
+            cartList.push(products[elemento]);
+        }
+        i++;// mientras no encuentre el id solicitado va incrementando el contador
+        //que le permitirá recorrer el array de objetos (products)
+    }
+    // añadir el producto al array cartList una vez he encontrado el id. 
+    document.getElementById("count_product").innerHTML = totalProductos; 
     
     }
    
